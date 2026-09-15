@@ -1,0 +1,1086 @@
+/* =========================================
+   Base
+========================================= */
+
+* {
+    box-sizing: border-box;
+}
+
+
+html {
+    min-height: 100%;
+}
+
+
+body {
+    margin: 0;
+    min-height: 100vh;
+
+    font-family:
+        -apple-system,
+        BlinkMacSystemFont,
+        "SF Pro Display",
+        "SF Pro Text",
+        Inter,
+        system-ui,
+        sans-serif;
+
+    color: #1d1d1f;
+
+    background:
+        radial-gradient(
+            circle at 20% 10%,
+            rgba(255, 255, 255, 0.95),
+            transparent 35%
+        ),
+        radial-gradient(
+            circle at 80% 20%,
+            rgba(210, 225, 255, 0.70),
+            transparent 35%
+        ),
+        linear-gradient(
+            135deg,
+            #f5f5f7,
+            #e9edf5
+        );
+
+    transition:
+        background 300ms ease,
+        color 300ms ease;
+}
+
+
+/* =========================================
+   Main layout
+========================================= */
+
+.app {
+    width: min(900px, 100%);
+
+    margin: 0 auto;
+
+    padding:
+        60px 24px
+        40px;
+}
+
+
+/* =========================================
+   Header
+========================================= */
+
+.header {
+    margin-bottom: 28px;
+}
+
+
+.header-top {
+    display: flex;
+
+    align-items: flex-start;
+
+    justify-content: space-between;
+
+    gap: 24px;
+}
+
+
+.header-title {
+    min-width: 0;
+}
+
+
+.eyebrow {
+    font-size: 13px;
+
+    font-weight: 650;
+
+    letter-spacing: 0.08em;
+
+    text-transform: uppercase;
+
+    color: #6e6e73;
+}
+
+
+h1 {
+    margin:
+        8px 0 6px;
+
+    font-size:
+        clamp(38px, 6vw, 56px);
+
+    line-height: 1;
+
+    letter-spacing: -0.045em;
+
+    font-weight: 750;
+}
+
+
+.subtitle {
+    margin: 0;
+
+    font-size: 18px;
+
+    color: #6e6e73;
+
+    letter-spacing: -0.01em;
+}
+
+
+/* =========================================
+   Header controls
+========================================= */
+
+.header-controls {
+    display: flex;
+
+    align-items: center;
+
+    gap: 6px;
+
+    flex-shrink: 0;
+}
+
+
+.header-control {
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 6px;
+
+    min-height: 40px;
+
+    padding:
+        0 13px;
+
+    border:
+        1px solid
+        rgba(120, 120, 128, 0.16);
+
+    border-radius: 999px;
+
+    background:
+        rgba(255, 255, 255, 0.42);
+
+    color: #6e6e73;
+
+    font-family: inherit;
+
+    font-size: 12px;
+
+    font-weight: 650;
+
+    backdrop-filter:
+        blur(20px);
+
+    -webkit-backdrop-filter:
+        blur(20px);
+
+    cursor: pointer;
+
+    transition:
+        background 180ms ease,
+        color 180ms ease,
+        transform 150ms ease,
+        box-shadow 180ms ease;
+}
+
+
+.header-control:hover {
+    background:
+        rgba(255, 255, 255, 0.68);
+
+    color: #1d1d1f;
+}
+
+
+.header-control.active {
+    background:
+        rgba(255, 255, 255, 0.72);
+
+    color: #1d1d1f;
+
+    box-shadow:
+        0 2px 8px
+        rgba(0, 0, 0, 0.06);
+}
+
+
+.header-control:active {
+    transform:
+        scale(0.96);
+}
+
+
+/* =========================================
+   Main glass card
+========================================= */
+
+.timer-card {
+    padding: 18px;
+
+    border-radius: 32px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255, 255, 255, 0.72),
+            rgba(255, 255, 255, 0.42)
+        );
+
+    border:
+        1px solid
+        rgba(255, 255, 255, 0.75);
+
+    backdrop-filter:
+        blur(28px)
+        saturate(160%);
+
+    -webkit-backdrop-filter:
+        blur(28px)
+        saturate(160%);
+
+    box-shadow:
+        0 20px 60px
+        rgba(0, 0, 0, 0.08),
+
+        inset 0 1px 0
+        rgba(255, 255, 255, 0.80);
+
+    transition:
+        background 300ms ease,
+        border-color 300ms ease,
+        box-shadow 300ms ease;
+}
+
+
+/* =========================================
+   Timing tabs
+========================================= */
+
+.timing-tabs {
+    display: flex;
+
+    gap: 5px;
+
+    padding: 5px;
+
+    overflow-x: auto;
+
+    border-radius: 18px;
+
+    background:
+        rgba(120, 120, 128, 0.12);
+
+    scrollbar-width: none;
+}
+
+
+.timing-tabs::-webkit-scrollbar {
+    display: none;
+}
+
+
+.timing-tab {
+    flex: 1;
+
+    min-width: max-content;
+
+    min-height: 44px;
+
+    padding:
+        0 18px;
+
+    border: none;
+
+    border-radius: 14px;
+
+    background:
+        transparent;
+
+    color: #6e6e73;
+
+    font: inherit;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition:
+        background 180ms ease,
+        color 180ms ease,
+        box-shadow 180ms ease,
+        transform 150ms ease;
+}
+
+
+.timing-tab:hover {
+    color: #1d1d1f;
+}
+
+
+.timing-tab.active {
+    color: #1d1d1f;
+
+    background:
+        rgba(255, 255, 255, 0.78);
+
+    box-shadow:
+        0 3px 12px
+        rgba(0, 0, 0, 0.08),
+
+        inset 0 1px 0
+        rgba(255, 255, 255, 0.90);
+}
+
+
+.timing-tab:active {
+    transform:
+        scale(0.98);
+}
+
+
+/* =========================================
+   Timer
+========================================= */
+
+.timer-section {
+    text-align: center;
+
+    padding:
+        70px 20px
+        45px;
+}
+
+
+.timer {
+    font-size:
+        clamp(
+            76px,
+            15vw,
+            150px
+        );
+
+    line-height: 0.9;
+
+    font-weight: 700;
+
+    letter-spacing: -0.065em;
+
+    font-variant-numeric:
+        tabular-nums;
+
+    color: #1d1d1f;
+
+    transition:
+        color 250ms ease,
+        transform 250ms ease;
+}
+
+
+.status {
+    margin-top: 22px;
+
+    font-size: 17px;
+
+    font-weight: 550;
+
+    color: #6e6e73;
+
+    transition:
+        color 250ms ease;
+}
+
+
+/* =========================================
+   Timer controls
+========================================= */
+
+.buttons {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 16px;
+
+    margin:
+        0 8px
+        34px;
+}
+
+
+.main-buttons {
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+}
+
+
+.start,
+.reset,
+.sound-test {
+    font-family: inherit;
+
+    cursor: pointer;
+
+    transition:
+        transform 150ms ease,
+        background 180ms ease,
+        box-shadow 180ms ease;
+}
+
+
+.start,
+.reset {
+    min-height: 48px;
+
+    padding:
+        0 28px;
+
+    border-radius: 16px;
+
+    border: none;
+
+    font-size: 16px;
+
+    font-weight: 650;
+}
+
+
+.start {
+    color: white;
+
+    background:
+        linear-gradient(
+            180deg,
+            #0a84ff,
+            #0071e3
+        );
+
+    box-shadow:
+        0 7px 20px
+        rgba(0, 113, 227, 0.25);
+}
+
+
+.start:hover {
+    box-shadow:
+        0 9px 24px
+        rgba(0, 113, 227, 0.30);
+}
+
+
+.reset {
+    color: #1d1d1f;
+
+    background:
+        rgba(120, 120, 128, 0.14);
+}
+
+
+.reset:hover {
+    background:
+        rgba(120, 120, 128, 0.20);
+}
+
+
+.start:active,
+.reset:active,
+.sound-test:active {
+    transform:
+        scale(0.97);
+}
+
+
+/* =========================================
+   Speaker test
+========================================= */
+
+.sound-test {
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 6px;
+
+    min-height: 44px;
+
+    padding:
+        0 16px;
+
+    border:
+        1px solid
+        rgba(120, 120, 128, 0.16);
+
+    border-radius: 14px;
+
+    background:
+        rgba(120, 120, 128, 0.10);
+
+    color: #1d1d1f;
+
+    font-size: 13px;
+
+    font-weight: 650;
+
+    white-space: nowrap;
+}
+
+
+.sound-test:hover {
+    background:
+        rgba(120, 120, 128, 0.16);
+}
+
+
+/* =========================================
+   Timing reference
+========================================= */
+
+.timing-reference {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 10px;
+}
+
+
+.timing-item {
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    padding:
+        14px;
+
+    border-radius: 18px;
+
+    background:
+        rgba(255, 255, 255, 0.38);
+
+    border:
+        1px solid
+        rgba(255, 255, 255, 0.55);
+
+    transition:
+        background 250ms ease,
+        border-color 250ms ease;
+}
+
+
+.timing-dot {
+    width: 10px;
+
+    height: 10px;
+
+    flex-shrink: 0;
+
+    border-radius: 50%;
+
+    box-shadow:
+        0 0 0 4px
+        rgba(0, 0, 0, 0.03);
+}
+
+
+.green .timing-dot {
+    background:
+        #34c759;
+}
+
+
+.yellow .timing-dot {
+    background:
+        #ffcc00;
+}
+
+
+.red .timing-dot {
+    background:
+        #ff3b30;
+}
+
+
+.timing-item strong {
+    display: block;
+
+    font-size: 13px;
+}
+
+
+.timing-item div span {
+    display: block;
+
+    margin-top: 2px;
+
+    font-size: 13px;
+
+    color: #6e6e73;
+
+    font-variant-numeric:
+        tabular-nums;
+}
+
+
+/* =========================================
+   Footer / signature
+========================================= */
+
+footer {
+    margin-top: 28px;
+
+    text-align: center;
+
+    font-size: 12px;
+
+    color: #8e8e93;
+}
+
+
+footer span {
+    margin-right: 5px;
+}
+
+
+footer strong {
+    font-family:
+        "Snell Roundhand",
+        "Bradley Hand",
+        "Segoe Print",
+        cursive;
+
+    font-size: 17px;
+
+    font-weight: 500;
+
+    color: #6e6e73;
+}
+
+
+/* =========================================
+   DARK MODE
+========================================= */
+
+body.dark-mode {
+    color: #f5f5f7;
+
+    background:
+        radial-gradient(
+            circle at 20% 10%,
+            rgba(80, 80, 90, 0.35),
+            transparent 35%
+        ),
+
+        radial-gradient(
+            circle at 80% 20%,
+            rgba(50, 70, 110, 0.35),
+            transparent 35%
+        ),
+
+        linear-gradient(
+            135deg,
+            #1c1c1e,
+            #111113
+        );
+}
+
+
+body.dark-mode .eyebrow,
+body.dark-mode .subtitle {
+    color:
+        #98989d;
+}
+
+
+body.dark-mode h1 {
+    color:
+        #f5f5f7;
+}
+
+
+body.dark-mode .timer-card {
+    background:
+        linear-gradient(
+            135deg,
+            rgba(60, 60, 65, 0.62),
+            rgba(35, 35, 40, 0.48)
+        );
+
+    border-color:
+        rgba(255, 255, 255, 0.12);
+
+    box-shadow:
+        0 20px 60px
+        rgba(0, 0, 0, 0.35),
+
+        inset 0 1px 0
+        rgba(255, 255, 255, 0.08);
+}
+
+
+body.dark-mode .timing-tabs {
+    background:
+        rgba(255, 255, 255, 0.08);
+}
+
+
+body.dark-mode .timing-tab {
+    color:
+        #98989d;
+}
+
+
+body.dark-mode .timing-tab:hover {
+    color:
+        #f5f5f7;
+}
+
+
+body.dark-mode .timing-tab.active {
+    color:
+        #f5f5f7;
+
+    background:
+        rgba(255, 255, 255, 0.14);
+
+    box-shadow:
+        0 3px 12px
+        rgba(0, 0, 0, 0.18),
+
+        inset 0 1px 0
+        rgba(255, 255, 255, 0.12);
+}
+
+
+body.dark-mode .timer {
+    color:
+        #f5f5f7;
+}
+
+
+body.dark-mode .status {
+    color:
+        #98989d;
+}
+
+
+body.dark-mode .reset {
+    color:
+        #f5f5f7;
+
+    background:
+        rgba(255, 255, 255, 0.12);
+}
+
+
+body.dark-mode .reset:hover {
+    background:
+        rgba(255, 255, 255, 0.17);
+}
+
+
+body.dark-mode .sound-test {
+    color:
+        #f5f5f7;
+
+    background:
+        rgba(255, 255, 255, 0.08);
+
+    border-color:
+        rgba(255, 255, 255, 0.10);
+}
+
+
+body.dark-mode .sound-test:hover {
+    background:
+        rgba(255, 255, 255, 0.13);
+}
+
+
+body.dark-mode .timing-item {
+    background:
+        rgba(255, 255, 255, 0.06);
+
+    border-color:
+        rgba(255, 255, 255, 0.08);
+}
+
+
+body.dark-mode .timing-item div span {
+    color:
+        #98989d;
+}
+
+
+body.dark-mode .header-control {
+    background:
+        rgba(255, 255, 255, 0.07);
+
+    border-color:
+        rgba(255, 255, 255, 0.10);
+
+    color:
+        #98989d;
+}
+
+
+body.dark-mode .header-control:hover {
+    background:
+        rgba(255, 255, 255, 0.12);
+
+    color:
+        #f5f5f7;
+}
+
+
+body.dark-mode .header-control.active {
+    background:
+        rgba(255, 255, 255, 0.14);
+
+    color:
+        #f5f5f7;
+}
+
+
+body.dark-mode footer {
+    color:
+        #636366;
+}
+
+
+body.dark-mode footer strong {
+    color:
+        #98989d;
+}
+
+
+/* =========================================
+   Focus accessibility
+========================================= */
+
+button:focus-visible {
+    outline:
+        3px solid
+        rgba(0, 113, 227, 0.35);
+
+    outline-offset:
+        3px;
+}
+
+
+/* =========================================
+   Responsive
+========================================= */
+
+@media (max-width: 700px) {
+
+    .app {
+        padding:
+            32px 14px
+            24px;
+    }
+
+
+    .header-top {
+        align-items: center;
+    }
+
+
+    .header-controls {
+        gap: 4px;
+    }
+
+
+    .header-control {
+        width: 40px;
+
+        height: 40px;
+
+        min-height: 40px;
+
+        padding: 0;
+
+        border-radius: 50%;
+    }
+
+
+    .control-label {
+        display: none;
+    }
+
+
+    .timer-card {
+        padding: 12px;
+
+        border-radius: 26px;
+    }
+
+
+    .timer-section {
+        padding:
+            60px 10px
+            38px;
+    }
+
+
+    .timing-reference {
+        grid-template-columns:
+            1fr;
+    }
+
+
+    .timing-tab {
+        flex:
+            0 0 auto;
+
+        padding:
+            0 15px;
+    }
+
+}
+
+
+@media (max-width: 500px) {
+
+    .header-top {
+        gap: 12px;
+    }
+
+
+    .buttons {
+        margin-left: 2px;
+
+        margin-right: 2px;
+    }
+
+
+    .sound-test {
+        padding:
+            0 13px;
+    }
+
+}
+
+
+/* =========================================
+   Reduced motion
+========================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        transition:
+            none !important;
+    }
+
+}
+
+/* =========================================
+   FINAL BUTTON LAYOUT
+========================================= */
+
+/* Allow the Test button to position
+   itself inside the glass card */
+.timer-card {
+    position: relative;
+}
+
+/* Center Pause + Reset */
+.buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin: 0 8px 34px;
+}
+
+/* Keep Pause + Reset together */
+.main-buttons {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+/* Move Test button to upper-right,
+   underneath the timing tabs */
+.sound-test {
+    position: absolute;
+    top: 83px;
+    right: 20px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+
+    min-height: 34px;
+    padding: 0 16px;
+
+    border: 1px solid rgba(120, 120, 128, 0.16);
+    border-radius: 12px;
+
+    background: rgba(120, 120, 128, 0.10);
+    color: #1d1d1f;
+
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 650;
+    white-space: nowrap;
+
+    cursor: pointer;
+
+    transition:
+        background 180ms ease,
+        transform 150ms ease;
+}
+
+.sound-test:hover {
+    background: rgba(120, 120, 128, 0.16);
+}
+
+.sound-test:active {
+    transform: scale(0.97);
+}
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 700px) {
+
+    .sound-test {
+        top: 75px;
+        right: 9px;
+    }
+
+}
+
+@media (max-width: 500px) {
+
+    .sound-test {
+        top: 75;
+        right: 9px;
+        padding: 0 13px;
+    }
+
+}

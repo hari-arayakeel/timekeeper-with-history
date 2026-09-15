@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Toastmasters Time Keeper</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <main class="app">
+
+        <!-- Header -->
+
+        <header class="header">
+
+            <div class="header-top">
+
+                <div class="header-title">
+
+                    <div class="eyebrow">
+                        Toastmasters Tools
+                    </div>
+
+                    <h1>
+                        Time Keeper
+                    </h1>
+
+                    <p class="subtitle">
+                        Keep every speech on time.
+                    </p>
+
+                </div>
+
+
+                <!-- Top-right controls -->
+
+                <div class="header-controls">
+
+                    <!-- Sound -->
+
+                    <button
+                        type="button"
+                        class="header-control active"
+                        id="sound-toggle"
+                        aria-pressed="true"
+                        title="Toggle sound alerts">
+
+                        <span
+                            id="sound-icon"
+                            aria-hidden="true">
+                            🔊
+                        </span>
+
+                        <span class="control-label">
+                            Sound
+                        </span>
+
+                    </button>
+
+
+                    <!-- Vibration -->
+
+                    <button
+                        type="button"
+                        class="header-control active"
+                        id="vibration-toggle"
+                        aria-pressed="true"
+                        title="Toggle vibration alerts">
+
+                        <span
+                            id="vibration-icon"
+                            aria-hidden="true">
+                            📳
+                        </span>
+
+                        <span class="control-label">
+                            Vibration
+                        </span>
+
+                    </button>
+
+
+                    <!-- Theme -->
+
+                    <button
+                        type="button"
+                        class="header-control"
+                        id="theme-toggle"
+                        aria-label="Switch to dark mode"
+                        title="Change appearance">
+
+                        <span
+                            id="theme-icon"
+                            aria-hidden="true">
+                            ☀︎
+                        </span>
+
+                        <span
+                            class="control-label"
+                            id="theme-label">
+                            Light
+                        </span>
+
+                    </button>
+
+                </div>
+
+            </div>
+
+        </header>
+
+
+        <!-- Main timer card -->
+
+        <section class="timer-card">
+
+
+            <!-- Speech type -->
+
+            <nav
+                class="timing-tabs"
+                aria-label="Speech timing">
+
+                <button
+                    type="button"
+                    class="timing-tab"
+                    data-type="Table Topics">
+
+                    Table Topics
+
+                </button>
+
+
+                <button
+                    type="button"
+                    class="timing-tab"
+                    data-type="Ice Breaker">
+
+                    Ice Breaker
+
+                </button>
+
+
+                <button
+                    type="button"
+                    class="timing-tab active"
+                    data-type="Other Speech">
+
+                    Other Speech
+
+                </button>
+
+
+                <button
+                    type="button"
+                    class="timing-tab"
+                    data-type="Evaluation">
+
+                    Evaluation
+
+                </button>
+
+            </nav>
+
+
+            <!-- Timer -->
+
+            <div class="timer-section">
+
+                <div
+                    class="timer"
+                    id="timer"
+                    aria-live="polite">
+
+                    00:00
+
+                </div>
+
+
+                <div
+                    class="status"
+                    id="status"
+                    aria-live="polite">
+
+                    Ready to start
+
+                </div>
+
+            </div>
+
+
+            <!-- Controls -->
+
+            <div class="buttons">
+
+
+                <div class="main-buttons">
+
+                    <button
+                        type="button"
+                        class="start"
+                        id="start">
+
+                        Start
+
+                    </button>
+
+
+                    <button
+                        type="button"
+                        class="reset"
+                        id="reset">
+
+                        Reset
+
+                    </button>
+
+                </div>
+
+
+                <!-- Speaker test -->
+
+                <button
+                    type="button"
+                    class="sound-test"
+                    id="sound-test"
+                    title="Test alert sound">
+
+                    <span aria-hidden="true">
+                        🔊
+                    </span>
+
+                    Test
+
+                </button>
+
+            </div>
+
+
+            <!-- Timing reference -->
+
+            <div class="timing-reference">
+
+
+                <!-- Green -->
+
+                <div class="timing-item green">
+
+                    <span
+                        class="timing-dot"
+                        aria-hidden="true">
+                    </span>
+
+                    <div>
+
+                        <strong>
+                            Green
+                        </strong>
+
+                        <span id="green-time">
+                            05:00
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Yellow -->
+
+                <div class="timing-item yellow">
+
+                    <span
+                        class="timing-dot"
+                        aria-hidden="true">
+                    </span>
+
+                    <div>
+
+                        <strong>
+                            Yellow
+                        </strong>
+
+                        <span id="yellow-time">
+                            06:00
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Red -->
+
+                <div class="timing-item red">
+
+                    <span
+                        class="timing-dot"
+                        aria-hidden="true">
+                    </span>
+
+                    <div>
+
+                        <strong>
+                            Red
+                        </strong>
+
+                        <span id="red-time">
+                            07:00
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- Signature -->
+
+        <footer>
+
+            <span>
+                Designed &amp; built by
+            </span>
+
+            <strong>
+                Hari Arayakeel
+            </strong>
+
+        </footer>
+
+    </main>
+
+
+    <script src="app.js"></script>
+
+</body>
+
+</html>
