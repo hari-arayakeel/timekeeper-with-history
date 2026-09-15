@@ -144,6 +144,93 @@ let yellowAlertPlayed =
 let redAlertPlayed =
     false;
 
+/* =========================================
+   Screen Wake Lock
+========================================= */
+
+let wakeLock = null;
+
+async function requestWakeLock() {
+
+    if (!("wakeLock" in navigator)) {
+        console.log("Screen Wake Lock is not supported.");
+        return;
+    }
+
+    try {
+
+        wakeLock =
+            await navigator.wakeLock.request("screen");
+
+        console.log("Screen Wake Lock is active.");
+
+        wakeLock.addEventListener(
+            "release",
+            () => {
+
+                console.log(
+                    "Screen Wake Lock was released."
+                );
+
+                wakeLock = null;
+
+            }
+        );
+
+    }
+    catch (error) {
+
+        console.log(
+            "Could not activate Screen Wake Lock:",
+            error
+        );
+
+    }
+
+}
+
+async function releaseWakeLock() {
+
+    if (wakeLock !== null) {
+
+        try {
+
+            await wakeLock.release();
+
+        }
+        catch (error) {
+
+            console.log(
+                "Could not release Screen Wake Lock:",
+                error
+            );
+
+        }
+
+        wakeLock = null;
+
+    }
+
+}
+
+/* Re-acquire the wake lock when the page
+   becomes visible again */
+
+document.addEventListener(
+    "visibilitychange",
+    async () => {
+
+        if (
+            document.visibilityState === "visible" &&
+            running
+        ) {
+
+            await requestWakeLock();
+
+        }
+
+    }
+);
 
 /* =========================================
    Audio
@@ -682,6 +769,8 @@ startButton.addEventListener(
             running =
                 false;
 
+            await releaseWakeLock();
+
             startButton.textContent =
                 "Start";
 
@@ -742,6 +831,8 @@ startButton.addEventListener(
         running =
             true;
 
+        await requestWakeLock();
+
         startButton.textContent =
             "Pause";
 
@@ -768,7 +859,7 @@ startButton.addEventListener(
 
 resetButton.addEventListener(
     "click",
-    () => {
+    async () => {
 
         clearInterval(
             interval
@@ -778,9 +869,9 @@ resetButton.addEventListener(
         running =
             false;
 
+        await releaseWakeLock();
 
-        elapsedSeconds =
-            0;
+        elapsedSeconds = 0;
 
 
         greenAlertPlayed =
@@ -812,7 +903,7 @@ tabs.forEach(
 
         tab.addEventListener(
             "click",
-            () => {
+            async () => {
 
                 clearInterval(
                     interval
@@ -821,6 +912,8 @@ tabs.forEach(
 
                 running =
                     false;
+
+                await releaseWakeLock();
 
 
                 elapsedSeconds =
