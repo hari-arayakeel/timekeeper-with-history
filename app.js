@@ -103,6 +103,12 @@ const timingRules = {
         green: 120,
         yellow: 150,
         red: 180
+    },
+
+    "General Evaluator": {
+        green: 180,
+        yellow: 240,
+        red: 300
     }
 
 };
