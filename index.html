@@ -1,357 +1,515 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <title>Toastmasters Time Keeper</title>
 
-    <link rel="stylesheet" href="style.css">
-</head>
+    <link rel="stylesheet" href="style.css" />
+  </head>
 
-<body>
-
+  <body>
     <main class="app">
+      <!-- =====================================
+         HEADER
+    ====================================== -->
 
-        <!-- Header -->
+      <header class="header">
+        <div class="header-top">
+          <div class="header-title">
+            <div class="eyebrow">Toastmasters Tools</div>
 
-        <header class="header">
+            <h1>Time Keeper</h1>
 
-            <div class="header-top">
+            <p class="subtitle">Keep every speech on time.</p>
+          </div>
 
-                <div class="header-title">
+          <div class="header-controls">
+            <!-- Sound -->
 
-                    <div class="eyebrow">
-                        Toastmasters Tools
-                    </div>
+            <button
+              type="button"
+              class="header-control active"
+              id="sound-toggle"
+              aria-pressed="true"
+              title="Toggle sound alerts"
+            >
+              <span id="sound-icon" class="button-icon" aria-hidden="true">
+              </span>
 
-                    <h1>
-                        Time Keeper
-                    </h1>
+              <span class="control-label"> Sound </span>
+            </button>
 
-                    <p class="subtitle">
-                        Keep every speech on time.
-                    </p>
+            <!-- Vibration -->
 
-                </div>
+            <button
+              type="button"
+              class="header-control active"
+              id="vibration-toggle"
+              aria-pressed="true"
+              title="Toggle vibration alerts"
+            >
+              <span id="vibration-icon" class="button-icon" aria-hidden="true">
+              </span>
 
+              <span class="control-label"> Vibration </span>
+            </button>
 
-                <!-- Top-right controls -->
+            <!-- Theme -->
 
-                <div class="header-controls">
+            <button
+              class="theme-pill"
+              id="theme-toggle"
+              type="button"
+              aria-label="Switch to dark mode"
+            >
+              <span class="theme-pill-icon" id="theme-icon" aria-hidden="true">
+              </span>
 
-                    <!-- Sound -->
+              <span class="theme-pill-label" id="theme-label"> Light </span>
+            </button>
+          </div>
+        </div>
+      </header>
 
-                    <button
-                        type="button"
-                        class="header-control active"
-                        id="sound-toggle"
-                        aria-pressed="true"
-                        title="Toggle sound alerts">
+      <!-- =====================================
+         MAIN CONTENT
+    ====================================== -->
 
-                        <span
-                            id="sound-icon"
-                            aria-hidden="true">
-                            🔊
-                        </span>
-
-                        <span class="control-label">
-                            Sound
-                        </span>
-
-                    </button>
-
-
-                    <!-- Vibration -->
-
-                    <button
-                        type="button"
-                        class="header-control active"
-                        id="vibration-toggle"
-                        aria-pressed="true"
-                        title="Toggle vibration alerts">
-
-                        <span
-                            id="vibration-icon"
-                            aria-hidden="true">
-                            📳
-                        </span>
-
-                        <span class="control-label">
-                            Vibration
-                        </span>
-
-                    </button>
-
-
-                    <!-- Theme -->
-
-                    <button
-                        type="button"
-                        class="header-control"
-                        id="theme-toggle"
-                        aria-label="Switch to dark mode"
-                        title="Change appearance">
-
-                        <span
-                            id="theme-icon"
-                            aria-hidden="true">
-                            ☀︎
-                        </span>
-
-                        <span
-                            class="control-label"
-                            id="theme-label">
-                            Light
-                        </span>
-
-                    </button>
-
-                </div>
-
-            </div>
-
-        </header>
-
-
-        <!-- Main timer card -->
+      <div class="main-content">
+        <!-- =================================
+             TIMER CARD
+        ================================== -->
 
         <section class="timer-card">
+          <!-- Today's Meeting -->
 
+          <div class="meeting-header">
+            <div class="meeting-title">
+              <div class="meeting-icon" aria-hidden="true"></div>
 
-            <!-- Speech type -->
+              <div>
+                <strong> Today's Meeting </strong>
 
-            <nav
-                class="timing-tabs"
-                aria-label="Speech timing">
+                <span id="meeting-date"> 15 September 2026 • 7:00 PM </span>
+              </div>
+            </div>
 
-                <button
-                    type="button"
-                    class="timing-tab"
-                    data-type="Table Topics">
+            <button type="button" class="new-meeting-button" id="new-meeting">
+              <span class="button-icon" aria-hidden="true"> </span>
 
-                    Table Topics
+              New Meeting
+            </button>
+          </div>
 
-                </button>
+          <!-- Speaker -->
 
+          <div class="speaker-section">
+            <div class="section-label">
+              <span
+                class="section-icon button-icon"
+                id="speaker-icon"
+                aria-hidden="true"
+              >
+              </span>
 
-                <button
-                    type="button"
-                    class="timing-tab"
-                    data-type="Ice Breaker">
+              <strong> Speaker </strong>
+            </div>
 
-                    Ice Breaker
+            <div class="speaker-controls">
+              <input
+                type="text"
+                id="speaker-name"
+                class="speaker-input"
+                placeholder="Speaker name"
+                autocomplete="off"
+              />
+            </div>
+          </div>
 
-                </button>
+          <!-- Speech Type -->
 
+          <div class="speech-type-section">
+            <div class="section-label">
+              <span
+                class="section-icon button-icon"
+                id="speech-type-icon"
+                aria-hidden="true"
+              >
+              </span>
 
-                <button
-                    type="button"
-                    class="timing-tab active"
-                    data-type="Other Speech">
+              <strong> Speech Type </strong>
+            </div>
 
-                    Other Speech
+            <nav class="timing-tabs" aria-label="Speech timing">
+              <button type="button" class="timing-tab" data-type="Table Topics">
+                Table Topics
+              </button>
 
-                </button>
+              <button type="button" class="timing-tab" data-type="Ice Breaker">
+                Ice Breaker
+              </button>
 
+              <button
+                type="button"
+                class="timing-tab active"
+                data-type="Other Speech"
+              >
+                Other Speech
+              </button>
 
-                <button
-                    type="button"
-                    class="timing-tab"
-                    data-type="Evaluation">
+              <button type="button" class="timing-tab" data-type="Evaluation">
+                Evaluation
+              </button>
 
-                    Evaluation
-
-                </button>
-
-
-                <button
-                    type="button"
-                    class="timing-tab"
-                    data-type="General Evaluator">
-
-                    General Evaluator
-
-                </button>
-
+              <button
+                type="button"
+                class="timing-tab"
+                data-type="General Evaluator"
+              >
+                General Evaluator
+              </button>
             </nav>
 
+            <!-- Sound test -->
 
-            <!-- Timer -->
+            <div class="tab-test">
+              <button
+                type="button"
+                class="sound-test"
+                id="sound-test"
+                title="Test alert sound"
+              >
+                <span class="button-icon" aria-hidden="true"> </span>
 
-            <div class="timer-section">
+                <span>Test</span>
+              </button>
+            </div>
+          </div>
 
-                <div
-                    class="timer"
-                    id="timer"
-                    aria-live="polite">
+          <!-- Timer -->
 
-                    00:00
+          <div class="timer-section">
+            <div class="timer" id="timer" aria-live="polite">00:00</div>
 
-                </div>
+            <div class="status" id="status" aria-live="polite">
+              Ready to start
+            </div>
+          </div>
 
+          <!-- Controls -->
 
-                <div
-                    class="status"
-                    id="status"
-                    aria-live="polite">
+          <div class="buttons">
+            <div class="main-buttons">
+              <button type="button" class="start" id="start">
+                <span class="button-icon" aria-hidden="true"> </span>
 
-                    Ready to start
+                <span id="start-label"> Start </span>
+              </button>
 
-                </div>
+              <button type="button" class="save" id="save" hidden>
+                <span class="button-icon" aria-hidden="true"> </span>
 
+                Finish &amp; Save
+              </button>
+
+              <button type="button" class="reset" id="reset">
+                <span class="button-icon" aria-hidden="true"> </span>
+
+                Reset
+              </button>
+            </div>
+          </div>
+
+          <!-- Timing reference -->
+
+          <div class="timing-reference">
+            <div class="timing-item green">
+              <span class="timing-dot" aria-hidden="true"> </span>
+
+              <div>
+                <strong> Green </strong>
+
+                <span id="green-time"> 05:00 </span>
+
+                <small> Good time </small>
+              </div>
             </div>
 
+            <div class="timing-item yellow">
+              <span class="timing-dot" aria-hidden="true"> </span>
 
-            <!-- Controls -->
+              <div>
+                <strong> Yellow </strong>
 
-            <div class="buttons">
+                <span id="yellow-time"> 06:00 </span>
 
-
-                <div class="main-buttons">
-
-                    <button
-                        type="button"
-                        class="start"
-                        id="start">
-
-                        Start
-
-                    </button>
-
-
-                    <button
-                        type="button"
-                        class="reset"
-                        id="reset">
-
-                        Reset
-
-                    </button>
-
-                </div>
-
-
-                <!-- Speaker test -->
-
-                <button
-                    type="button"
-                    class="sound-test"
-                    id="sound-test"
-                    title="Test alert sound">
-
-                    <span aria-hidden="true">
-                        🔊
-                    </span>
-
-                    Test
-
-                </button>
-
+                <small> Wrap up </small>
+              </div>
             </div>
 
+            <div class="timing-item red">
+              <span class="timing-dot" aria-hidden="true"> </span>
 
-            <!-- Timing reference -->
+              <div>
+                <strong> Red </strong>
 
-            <div class="timing-reference">
+                <span id="red-time"> 07:00 </span>
 
-
-                <!-- Green -->
-
-                <div class="timing-item green">
-
-                    <span
-                        class="timing-dot"
-                        aria-hidden="true">
-                    </span>
-
-                    <div>
-
-                        <strong>
-                            Green
-                        </strong>
-
-                        <span id="green-time">
-                            05:00
-                        </span>
-
-                    </div>
-
-                </div>
-
-
-                <!-- Yellow -->
-
-                <div class="timing-item yellow">
-
-                    <span
-                        class="timing-dot"
-                        aria-hidden="true">
-                    </span>
-
-                    <div>
-
-                        <strong>
-                            Yellow
-                        </strong>
-
-                        <span id="yellow-time">
-                            06:00
-                        </span>
-
-                    </div>
-
-                </div>
-
-
-                <!-- Red -->
-
-                <div class="timing-item red">
-
-                    <span
-                        class="timing-dot"
-                        aria-hidden="true">
-                    </span>
-
-                    <div>
-
-                        <strong>
-                            Red
-                        </strong>
-
-                        <span id="red-time">
-                            07:00
-                        </span>
-
-                    </div>
-
-                </div>
-
+                <small> Stop </small>
+              </div>
             </div>
-
+          </div>
         </section>
 
+        <!-- =================================
+             MEETING HISTORY
+        ================================== -->
 
-        <!-- Signature -->
+        <section class="history-card">
+          <div class="history-header">
+            <div>
+              <div class="history-eyebrow">Today's Meeting</div>
 
-        <footer>
+              <h2>Meeting History</h2>
+            </div>
 
-            <span>
-                Designed &amp; built by
-            </span>
+            <button type="button" class="history-action">
+              <span>View All</span>
+              <span class="button-icon" aria-hidden="true"> </span>
+            </button>
+          </div>
 
-            <strong>
-                Hari Arayakeel
-            </strong>
+          <!-- Meeting information -->
 
-        </footer>
+          <div class="history-meeting-info">
+            <div class="history-calendar-icon" aria-hidden="true"></div>
 
+            <div>
+              <strong> 15 September 2026 </strong>
+
+              <span> Toastmasters Meeting </span>
+
+              <span> 6:00 PM – 8:30 PM </span>
+            </div>
+          </div>
+
+          <!-- Statistics -->
+
+          <div class="meeting-stats">
+            <div class="stat">
+              <strong id="total-sessions"> 8 </strong>
+
+              <span> Speeches </span>
+            </div>
+
+            <div class="stat within-stat">
+              <strong id="within-count"> 5 </strong>
+
+              <span> Within </span>
+            </div>
+
+            <div class="stat amber-stat">
+              <strong id="amber-count"> 2 </strong>
+
+              <span> Amber </span>
+            </div>
+
+            <div class="stat overtime-stat">
+              <strong id="overtime-count"> 1 </strong>
+
+              <span> Overtime </span>
+            </div>
+          </div>
+
+          <!-- History table -->
+
+          <div class="history-table">
+            <div class="history-table-header">
+              <span> # </span>
+
+              <span> Speaker </span>
+
+              <span> Type </span>
+
+              <span> Duration </span>
+
+              <span> Status </span>
+
+              <span> Time </span>
+
+              <span> Action </span>
+            </div>
+
+            <!-- Example row -->
+
+            <div class="history-row">
+              <span> 1 </span>
+
+              <strong> John Smith </strong>
+
+              <span> Other Speech </span>
+
+              <span> 06:42 </span>
+
+              <span class="status-pill amber"> Amber </span>
+
+              <span> 7:02 PM </span>
+            </div>
+
+            <div class="history-row">
+              <span> 2 </span>
+
+              <strong> Sarah Jones </strong>
+
+              <span> Evaluation </span>
+
+              <span> 02:18 </span>
+
+              <span class="status-pill within"> Within </span>
+
+              <span> 7:15 PM </span>
+            </div>
+
+            <div class="history-row">
+              <span> 3 </span>
+
+              <strong> David Brown </strong>
+
+              <span> General Evaluator </span>
+
+              <span> 05:23 </span>
+
+              <span class="status-pill overtime"> Overtime </span>
+
+              <span> 7:23 PM </span>
+            </div>
+
+            <div class="history-row">
+              <span> 4 </span>
+
+              <strong> Maria Lee </strong>
+
+              <span> Ice Breaker </span>
+
+              <span> 04:56 </span>
+
+              <span class="status-pill within"> Within </span>
+
+              <span> 7:35 PM </span>
+            </div>
+
+            <div class="history-row">
+              <span> 5 </span>
+
+              <strong> James Wilson </strong>
+
+              <span> Table Topics </span>
+
+              <span> 01:42 </span>
+
+              <span class="status-pill within"> Within </span>
+
+              <span> 7:42 PM </span>
+            </div>
+
+            <div class="history-row">
+              <span> 6 </span>
+
+              <strong> Linda Chen </strong>
+
+              <span> Other Speech </span>
+
+              <span> 07:14 </span>
+
+              <span class="status-pill overtime"> Overtime </span>
+
+              <span> 7:50 PM </span>
+            </div>
+
+            <div class="history-row">
+              <span> 7 </span>
+
+              <strong> Robert Kim </strong>
+
+              <span> Evaluation </span>
+
+              <span> 02:51 </span>
+
+              <span class="status-pill within"> Within </span>
+
+              <span> 8:02 PM </span>
+            </div>
+
+            <div class="history-row">
+              <span> 8 </span>
+
+              <strong> Anita Patel </strong>
+
+              <span> Other Speech </span>
+
+              <span> 06:05 </span>
+
+              <span class="status-pill amber"> Amber </span>
+
+              <span> 8:12 PM </span>
+            </div>
+          </div>
+
+          <!-- History actions -->
+
+          <div class="history-actions">
+            <button type="button" class="history-footer-button">
+              <span class="button-icon" aria-hidden="true"> </span>
+
+              Export (CSV)
+            </button>
+
+            <button type="button" class="history-footer-button danger">
+              <span class="button-icon" aria-hidden="true"> </span>
+
+              Clear Meeting
+            </button>
+          </div>
+        </section>
+      </div>
+
+      <!-- =====================================
+         FOOTER
+    ====================================== -->
+
+      <footer>
+        <span>Designed & built by</span>
+
+        <strong>Hari Arayakeel</strong>
+
+        <a
+          class="linkedin-link"
+          href="https://www.linkedin.com/in/hari-arayakeel/"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="LinkedIn profile"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="16"
+            height="16"
+            fill="currentColor"
+            class="bi bi-linkedin"
+            viewBox="0 0 16 16"
+          >
+            <path
+              d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854zm4.943 12.248V6.169H2.542v7.225zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248S2.4 3.226 2.4 3.934c0 .694.521 1.248 1.327 1.248zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016l.016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225z"
+            />
+          </svg>
+        </a>
+      </footer>
     </main>
 
-
     <script src="app.js"></script>
-
-</body>
-
+  </body>
 </html>
+
+<div id="viewport-size"></div>
