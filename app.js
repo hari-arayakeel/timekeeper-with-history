@@ -157,14 +157,17 @@ const ICONS = {
         </svg>
     `,
 
-  calendar: `
-        <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 16 16"
-            aria-hidden="true">
-            <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h.5A1.5 1.5 0 0 1 15 2.5v11a1.5 1.5 0 0 1-1.5 1.5h-11A1.5 1.5 0 0 1 1 13.5v-11A1.5 1.5 0 0 1 2.5 1H3V.5a.5.5 0 0 1 .5-.5M2.5 2a.5.5 0 0 0-.5.5V4h12V2.5a.5.5 0 0 0-.5-.5zM14 5H2v8.5a.5.5 0 0 0 .5.5h11a.5.5 0 0 0 .5-.5z"/>
-        </svg>
-    `,
+  calendar: `<svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="16"
+      height="16"
+      fill="currentColor"
+      class="bi bi-calendar3"
+      viewBox="0 0 16 16"
+      aria-hidden="true">
+      <path d="M14 0H2a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2M1 4h14v10a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1zm0-1V2a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v1z"/>
+      <path d="M3 6h2v2H3zm3 0h2v2H6zm3 0h2v2H9zm3 0h1v2h-1zM3 9h2v2H3zm3 0h2v2H6zm3 0h2v2H9zm3 0h1v2h-1z"/>
+  </svg>`,
 
   person: `
         <svg
