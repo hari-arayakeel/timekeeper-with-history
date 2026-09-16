@@ -1140,9 +1140,9 @@ soundTest.addEventListener("click", async () => {
    Theme toggle
 ========================================= */
 
-themeToggle.addEventListener("click", () => {
-  document.body.classList.toggle("dark-mode");
+const SAVED_THEME_KEY = "toastmasters-theme";
 
+function updateThemeUI() {
   const darkMode = document.body.classList.contains("dark-mode");
 
   if (darkMode) {
@@ -1150,14 +1150,43 @@ themeToggle.addEventListener("click", () => {
 
     themeLabel.textContent = "Dark";
 
-    themeToggle.setAttribute("aria-label", "Switch to light mode");
+    themeToggle.setAttribute(
+      "aria-label",
+      "Switch to light mode",
+    );
   } else {
     themeIcon.innerHTML = ICONS.sun;
 
     themeLabel.textContent = "Light";
 
-    themeToggle.setAttribute("aria-label", "Switch to dark mode");
+    themeToggle.setAttribute(
+      "aria-label",
+      "Switch to dark mode",
+    );
   }
+}
+
+const savedTheme =
+  localStorage.getItem(SAVED_THEME_KEY);
+
+if (savedTheme === "dark") {
+  document.body.classList.add("dark-mode");
+}
+
+updateThemeUI();
+
+themeToggle.addEventListener("click", () => {
+  document.body.classList.toggle("dark-mode");
+
+  const darkMode =
+    document.body.classList.contains("dark-mode");
+
+  localStorage.setItem(
+    SAVED_THEME_KEY,
+    darkMode ? "dark" : "light",
+  );
+
+  updateThemeUI();
 });
 
 /* =========================================
@@ -1642,11 +1671,10 @@ function showAllSessions() {
         Session list.
     */
 
-  const sessionList = document.createElement("div");
+const sessionList = document.createElement("div");
+sessionList.className = "history-modal-list";
 
-  sessionList.className = "history-modal-list";
-
-  if (currentMeeting.sessions.length === 0) {
+if (currentMeeting.sessions.length === 0) {
     const empty = document.createElement("p");
 
     empty.textContent = "No saved speeches yet.";
@@ -1655,97 +1683,188 @@ function showAllSessions() {
 
     sessionList.appendChild(empty);
   } else {
+
+    const tableHeader = document.createElement("div");
+
+    tableHeader.className =
+        "history-modal-table-header";
+
+    [
+        "#",
+        "Speaker",
+        "Type",
+        "Duration",
+        "Status",
+        "Time",
+        "Action"
+    ].forEach((label) => {
+
+        const cell =
+            document.createElement("span");
+
+        cell.textContent = label;
+
+        tableHeader.appendChild(cell);
+    });
+
+    sessionList.appendChild(tableHeader);
+
+
     currentMeeting.sessions.forEach((session, index) => {
-      const row = document.createElement("div");
 
-      row.className = "history-modal-row";
+          const row = document.createElement("div");
 
-      const details = document.createElement("div");
+          row.className = "history-modal-row";
 
-      details.className = "history-modal-details";
 
-      const speaker = document.createElement("strong");
+          const number =
+              document.createElement("span");
 
-      speaker.textContent = `${index + 1}. ${session.speaker}`;
+          number.textContent =
+              index + 1;
 
-      const information = document.createElement("span");
 
-      information.textContent = `${session.type} • ${formatTime(session.duration)} • ${session.time}`;
+          const speaker =
+              document.createElement("strong");
 
-      const statusPill = document.createElement("span");
+          speaker.textContent =
+              session.speaker;
 
-      statusPill.className = "status-pill";
 
-      if (session.status === "Within") {
-        statusPill.classList.add("within");
-      } else if (session.status === "Amber") {
-        statusPill.classList.add("amber");
-      } else {
-        statusPill.classList.add("overtime");
-      }
+          const type =
+              document.createElement("span");
 
-      statusPill.textContent = session.status;
+          type.textContent =
+              session.type;
 
-      details.appendChild(speaker);
 
-      details.appendChild(information);
+          const duration =
+              document.createElement("span");
 
-      details.appendChild(statusPill);
+          duration.textContent =
+              formatTime(session.duration);
 
-      /*
-                    Delete button.
-                */
 
-      const deleteButton = document.createElement("button");
+          const statusPill =
+              document.createElement("span");
 
-      deleteButton.type = "button";
+          statusPill.className =
+              "status-pill";
 
-      deleteButton.className = "history-delete-button";
 
-      deleteButton.textContent = "Delete";
+          if (session.status === "Within") {
 
-      deleteButton.addEventListener("click", () => {
-        const confirmed = confirm(`Delete ${session.speaker}'s session?`);
+            statusPill.classList.add(
+                "within"
+            );
 
-        if (!confirmed) {
-          return;
-        }
+          } else if (session.status === "Amber") {
 
-        /*
-                            Remove the selected
-                            session.
-                        */
+            statusPill.classList.add(
+                "amber"
+            );
 
-        currentMeeting.sessions = currentMeeting.sessions.filter(
-          (item) => item.id !== session.id,
-        );
+          } else {
 
-        /*
-                            Save updated meeting.
-                        */
+            statusPill.classList.add(
+                "overtime"
+            );
 
-        saveMeeting();
+          }
 
-        /*
-                            Refresh today's history.
-                        */
 
-        renderHistory();
+          statusPill.textContent =
+              session.status;
 
-        /*
-                            Refresh View All.
-                        */
 
-        overlay.remove();
+          const time =
+              document.createElement("span");
 
-        showAllSessions();
-      });
+          time.textContent =
+              session.time;
 
-      row.appendChild(details);
 
-      row.appendChild(deleteButton);
+          /*
+                Delete button.
+            */
 
-      sessionList.appendChild(row);
+          const deleteButton =
+              document.createElement("button");
+
+          deleteButton.type =
+              "button";
+
+          deleteButton.className =
+              "history-delete-button";
+
+          deleteButton.innerHTML =
+              ICONS.trash;
+
+          deleteButton.setAttribute(
+              "aria-label",
+              `Delete ${session.speaker}'s session`,
+          );
+
+
+          deleteButton.addEventListener(
+              "click",
+              () => {
+
+                const confirmed =
+                    confirm(
+                        `Delete ${session.speaker}'s session?`,
+                    );
+
+                if (!confirmed) {
+                  return;
+                }
+
+
+                currentMeeting.sessions =
+                    currentMeeting.sessions.filter(
+                        (item) =>
+                            item.id !== session.id,
+                    );
+
+
+                saveMeeting();
+
+                renderHistory();
+
+                overlay.remove();
+
+                showAllSessions();
+              },
+          );
+
+
+          /*
+                Add all cells to the row.
+            */
+
+          row.appendChild(number);
+
+          row.appendChild(speaker);
+
+          row.appendChild(type);
+
+          row.appendChild(duration);
+
+          row.appendChild(statusPill);
+
+          row.appendChild(time);
+
+          row.appendChild(deleteButton);
+
+
+          /*
+                Add row to the modal.
+            */
+
+          sessionList.appendChild(row);
+
+
+
     });
   }
 
