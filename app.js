@@ -241,7 +241,7 @@ const ICONS = {
             <path d="M4 5.5A.5.5 0 0 1 4.5 5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5m0 2A.5.5 0 0 1 4.5 7h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5m0 2A.5.5 0 0 1 4.5 9h4a.5.5 0 0 1 0 1h-4a.5.5 0 0 1-.5-.5"/>
         </svg>
     `,
-    speechType: `
+  speechType: `
     <svg
         xmlns="http://www.w3.org/2000/svg"
         width="16"
@@ -257,8 +257,6 @@ const ICONS = {
     </svg>
 `,
 };
-
-
 
 /* =========================================
    Header controls
@@ -1150,24 +1148,17 @@ function updateThemeUI() {
 
     themeLabel.textContent = "Dark";
 
-    themeToggle.setAttribute(
-      "aria-label",
-      "Switch to light mode",
-    );
+    themeToggle.setAttribute("aria-label", "Switch to light mode");
   } else {
     themeIcon.innerHTML = ICONS.sun;
 
     themeLabel.textContent = "Light";
 
-    themeToggle.setAttribute(
-      "aria-label",
-      "Switch to dark mode",
-    );
+    themeToggle.setAttribute("aria-label", "Switch to dark mode");
   }
 }
 
-const savedTheme =
-  localStorage.getItem(SAVED_THEME_KEY);
+const savedTheme = localStorage.getItem(SAVED_THEME_KEY);
 
 if (savedTheme === "dark") {
   document.body.classList.add("dark-mode");
@@ -1178,13 +1169,9 @@ updateThemeUI();
 themeToggle.addEventListener("click", () => {
   document.body.classList.toggle("dark-mode");
 
-  const darkMode =
-    document.body.classList.contains("dark-mode");
+  const darkMode = document.body.classList.contains("dark-mode");
 
-  localStorage.setItem(
-    SAVED_THEME_KEY,
-    darkMode ? "dark" : "light",
-  );
+  localStorage.setItem(SAVED_THEME_KEY, darkMode ? "dark" : "light");
 
   updateThemeUI();
 });
@@ -1601,10 +1588,6 @@ if (exportButton) {
    View All
 ========================================= */
 
-/* =========================================
-   View All
-========================================= */
-
 if (historyAction) {
   historyAction.addEventListener("click", () => {
     showAllSessions();
@@ -1654,8 +1637,7 @@ function showAllSessions() {
 
   closeButton.setAttribute("aria-label", "Close meeting history");
 
-  header.appendChild(title);
-  header.appendChild(closeButton);
+  header.append(title, closeButton);
 
   /*
         Meeting information.
@@ -1671,10 +1653,10 @@ function showAllSessions() {
         Session list.
     */
 
-const sessionList = document.createElement("div");
-sessionList.className = "history-modal-list";
+  const sessionList = document.createElement("div");
+  sessionList.className = "history-modal-list";
 
-if (currentMeeting.sessions.length === 0) {
+  if (currentMeeting.sessions.length === 0) {
     const empty = document.createElement("p");
 
     empty.textContent = "No saved speeches yet.";
@@ -1683,188 +1665,121 @@ if (currentMeeting.sessions.length === 0) {
 
     sessionList.appendChild(empty);
   } else {
-
     const tableHeader = document.createElement("div");
 
-    tableHeader.className =
-        "history-modal-table-header";
+    tableHeader.className = "history-modal-table-header";
 
-    [
-        "#",
-        "Speaker",
-        "Type",
-        "Duration",
-        "Status",
-        "Time",
-        "Action"
-    ].forEach((label) => {
-
-        const cell =
-            document.createElement("span");
+    ["#", "Speaker", "Type", "Duration", "Status", "Time", "Action"].forEach(
+      (label) => {
+        const cell = document.createElement("span");
 
         cell.textContent = label;
 
         tableHeader.appendChild(cell);
-    });
+      },
+    );
 
     sessionList.appendChild(tableHeader);
 
-
     currentMeeting.sessions.forEach((session, index) => {
+      const row = document.createElement("div");
 
-          const row = document.createElement("div");
+      row.className = "history-modal-row";
 
-          row.className = "history-modal-row";
+      const number = document.createElement("span");
 
+      number.textContent = index + 1;
 
-          const number =
-              document.createElement("span");
+      const speaker = document.createElement("strong");
 
-          number.textContent =
-              index + 1;
+      speaker.textContent = session.speaker;
 
+      const type = document.createElement("span");
 
-          const speaker =
-              document.createElement("strong");
+      type.textContent = session.type;
 
-          speaker.textContent =
-              session.speaker;
+      const duration = document.createElement("span");
 
+      duration.textContent = formatTime(session.duration);
 
-          const type =
-              document.createElement("span");
+      const statusPill = document.createElement("span");
 
-          type.textContent =
-              session.type;
+      statusPill.className = "status-pill";
 
+      if (session.status === "Within") {
+        statusPill.classList.add("within");
+      } else if (session.status === "Amber") {
+        statusPill.classList.add("amber");
+      } else {
+        statusPill.classList.add("overtime");
+      }
 
-          const duration =
-              document.createElement("span");
+      statusPill.textContent = session.status;
 
-          duration.textContent =
-              formatTime(session.duration);
+      const time = document.createElement("span");
 
+      time.textContent = session.time;
 
-          const statusPill =
-              document.createElement("span");
-
-          statusPill.className =
-              "status-pill";
-
-
-          if (session.status === "Within") {
-
-            statusPill.classList.add(
-                "within"
-            );
-
-          } else if (session.status === "Amber") {
-
-            statusPill.classList.add(
-                "amber"
-            );
-
-          } else {
-
-            statusPill.classList.add(
-                "overtime"
-            );
-
-          }
-
-
-          statusPill.textContent =
-              session.status;
-
-
-          const time =
-              document.createElement("span");
-
-          time.textContent =
-              session.time;
-
-
-          /*
+      /*
                 Delete button.
             */
 
-          const deleteButton =
-              document.createElement("button");
+      const deleteButton = document.createElement("button");
 
-          deleteButton.type =
-              "button";
+      deleteButton.type = "button";
 
-          deleteButton.className =
-              "history-delete-button";
+      deleteButton.className = "history-delete-button";
 
-          deleteButton.innerHTML =
-              ICONS.trash;
+      deleteButton.innerHTML = ICONS.trash;
 
-          deleteButton.setAttribute(
-              "aria-label",
-              `Delete ${session.speaker}'s session`,
-          );
+      deleteButton.setAttribute(
+        "aria-label",
+        `Delete ${session.speaker}'s session`,
+      );
 
+      deleteButton.addEventListener("click", () => {
+        const confirmed = confirm(`Delete ${session.speaker}'s session?`);
 
-          deleteButton.addEventListener(
-              "click",
-              () => {
+        if (!confirmed) {
+          return;
+        }
 
-                const confirmed =
-                    confirm(
-                        `Delete ${session.speaker}'s session?`,
-                    );
+        currentMeeting.sessions = currentMeeting.sessions.filter(
+          (item) => item.id !== session.id,
+        );
 
-                if (!confirmed) {
-                  return;
-                }
+        saveMeeting();
 
+        renderHistory();
 
-                currentMeeting.sessions =
-                    currentMeeting.sessions.filter(
-                        (item) =>
-                            item.id !== session.id,
-                    );
+        overlay.remove();
 
+        showAllSessions();
+      });
 
-                saveMeeting();
-
-                renderHistory();
-
-                overlay.remove();
-
-                showAllSessions();
-              },
-          );
-
-
-          /*
+      /*
                 Add all cells to the row.
             */
 
-          row.appendChild(number);
+      row.appendChild(number);
 
-          row.appendChild(speaker);
+      row.appendChild(speaker);
 
-          row.appendChild(type);
+      row.appendChild(type);
 
-          row.appendChild(duration);
+      row.appendChild(duration);
 
-          row.appendChild(statusPill);
+      row.appendChild(statusPill);
 
-          row.appendChild(time);
+      row.appendChild(time);
 
-          row.appendChild(deleteButton);
+      row.appendChild(deleteButton);
 
-
-          /*
+      /*
                 Add row to the modal.
             */
 
-          sessionList.appendChild(row);
-
-
-
+      sessionList.appendChild(row);
     });
   }
 
@@ -1887,13 +1802,9 @@ if (currentMeeting.sessions.length === 0) {
     }
   });
 
-  modal.appendChild(header);
+  modal.append(header, meetingInfo, sessionList);
 
-  modal.appendChild(meetingInfo);
-
-  modal.appendChild(sessionList);
-
-  overlay.appendChild(modal);
+  overlay.append(modal);
 
   document.body.appendChild(overlay);
 }
@@ -1914,8 +1825,7 @@ if (themeIcon) {
 }
 
 if (speechTypeIcon) {
-    speechTypeIcon.innerHTML =
-        ICONS.speechType;
+  speechTypeIcon.innerHTML = ICONS.speechType;
 }
 
 if (speakerIcon) {
