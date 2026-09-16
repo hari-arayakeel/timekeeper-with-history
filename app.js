@@ -157,26 +157,36 @@ const ICONS = {
         </svg>
     `,
 
-  calendar: `<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="16"
-      height="16"
-      fill="currentColor"
-      class="bi bi-calendar3"
-      viewBox="0 0 16 16"
-      aria-hidden="true">
-      <path d="M14 0H2a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2M1 4h14v10a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1zm0-1V2a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v1z"/>
-      <path d="M3 6h2v2H3zm3 0h2v2H6zm3 0h2v2H9zm3 0h1v2h-1zM3 9h2v2H3zm3 0h2v2H6zm3 0h2v2H9zm3 0h1v2h-1z"/>
-  </svg>`,
+  calendar: `
+      <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="16"
+          height="16"
+          fill="currentColor"
+          class="bi bi-calendar2-week"
+          viewBox="0 0 16 16"
+          aria-hidden="true">
+          <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5M2 2a1 1 0 0 0-1 1v11a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V3a1 1 0 0 0-1-1z"/>
+          <path d="M2.5 4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5H3a.5.5 0 0 1-.5-.5zM11 7.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5zm-3 0a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5zm-5 3a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5zm3 0a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5z"/>
+      </svg>
+  `,
 
   person: `
-        <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 16 16"
-            aria-hidden="true">
-            <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6m2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0m4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4m-1-.004c-.001-.246-.154-1.75-5-1.75s-4.999 1.504-5 1.75z"/>
-        </svg>
-    `,
+      <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="16"
+          height="16"
+          fill="currentColor"
+          class="bi bi-person-walking"
+          viewBox="0 0 16 16"
+          aria-hidden="true">
+
+          <path d="M9.5 1.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0M6.44 3.752A.75.75 0 0 1 7 3.5h1.445c.742 0 1.32.643 1.243 1.38l-.43 4.083a1.8 1.8 0 0 1-.088.395l-.318.906.213.242a.8.8 0 0 1 .114.175l2 4.25a.75.75 0 1 1-1.357.638l-1.956-4.154-1.68-1.921A.75.75 0 0 1 6 8.96l.138-2.613-.435.489-.464 2.786a.75.75 0 1 1-1.48-.246l.5-3a.75.75 0 0 1 .18-.375l2-2.25Z"/>
+
+          <path d="M6.25 11.745v-1.418l1.204 1.375.261.524a.8.8 0 0 1-.12.231l-2.5 3.25a.75.75 0 1 1-1.19-.914zm4.22-4.215-.494-.494.205-1.843.006-.067 1.124 1.124h1.44a.75.75 0 0 1 0 1.5H11a.75.75 0 0 1-.531-.22Z"/>
+
+      </svg>
+  `,
 
   plus: `
         <svg
@@ -210,14 +220,17 @@ const ICONS = {
     `,
 
   upload: `
-        <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 16 16"
-            aria-hidden="true">
-            <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.1a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.1a.5.5 0 0 1 1 0v2.1a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.1a.5.5 0 0 1 .5-.5"/>
-            <path d="M7.646 1.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 2.707V10.5a.5.5 0 0 1-1 0V2.707L5.354 4.854a.5.5 0 1 1-.708-.708z"/>
-        </svg>
-    `,
+      <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="16"
+          height="16"
+          fill="currentColor"
+          class="bi bi-cloud-upload-fill"
+          viewBox="0 0 16 16"
+          aria-hidden="true">
+          <path fill-rule="evenodd" d="M8 0a5.53 5.53 0 0 0-3.594 1.342c-.766.66-1.321 1.52-1.464 2.383C1.266 4.095 0 5.555 0 7.318 0 9.366 1.708 11 3.781 11H7.5V5.707L5.354 7.854a.5.5 0 1 1-.708-.708l3-3a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 5.707V11h4.188C14.502 11 16 9.57 16 7.773c0-1.636-1.242-2.969-2.834-3.194C12.923 1.999 10.69 0 8 0m-.5 14.5V11h1v3.5a.5.5 0 0 1-1 0"/>
+      </svg>
+  `,
 
   cardText: `
         <svg
@@ -228,7 +241,24 @@ const ICONS = {
             <path d="M4 5.5A.5.5 0 0 1 4.5 5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5m0 2A.5.5 0 0 1 4.5 7h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5m0 2A.5.5 0 0 1 4.5 9h4a.5.5 0 0 1 0 1h-4a.5.5 0 0 1-.5-.5"/>
         </svg>
     `,
+    speechType: `
+    <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="16"
+        height="16"
+        fill="currentColor"
+        class="bi bi-mic-fill"
+        viewBox="0 0 16 16"
+        aria-hidden="true">
+
+        <path d="M5 3a3 3 0 0 1 6 0v5a3 3 0 0 1-6 0z"/>
+
+        <path d="M3.5 6.5A.5.5 0 0 1 4 7v1a4 4 0 0 0 8 0V7a.5.5 0 0 1 1 0v1a5 5 0 0 1-4.5 4.975V15h3a.5.5 0 0 1 0 1h-7a.5.5 0 0 1 0-1h3v-2.025A5 5 0 0 1 3 8V7a.5.5 0 0 1 .5-.5"/>
+    </svg>
+`,
 };
+
+
 
 /* =========================================
    Header controls
@@ -1765,7 +1795,8 @@ if (themeIcon) {
 }
 
 if (speechTypeIcon) {
-  speechTypeIcon.innerHTML = ICONS.cardText;
+    speechTypeIcon.innerHTML =
+        ICONS.speechType;
 }
 
 if (speakerIcon) {
@@ -1830,17 +1861,3 @@ updateTimer();
 updateSaveButton();
 
 renderHistory();
-
-function showViewportSize() {
-  const element = document.getElementById("viewport-size");
-
-  if (!element) {
-    return;
-  }
-
-  element.textContent = `${window.innerWidth}px × ${window.innerHeight}px`;
-}
-
-showViewportSize();
-
-window.addEventListener("resize", showViewportSize);

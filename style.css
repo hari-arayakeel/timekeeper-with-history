@@ -458,35 +458,46 @@ h1 {
 ========================================= */
 
 .buttons {
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 10px;
-  margin: 0 8px 34px;
+  margin: 0 0 34px;
+  box-sizing: border-box;
 }
 
 .main-buttons {
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 10px;
+  box-sizing: border-box;
 }
 
 .start,
 .reset,
 .save {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
   font-family: inherit;
   cursor: pointer;
+  box-sizing: border-box;
+  white-space: nowrap;
 }
 
 .start,
 .reset {
   min-height: 48px;
-  padding: 0 28px;
+  min-width: 120px;
+  padding: 0 24px;
   border-radius: 16px;
   border: none;
   font-size: 16px;
   font-weight: 650;
+  line-height: 1;
   transition:
     transform 150ms ease,
     background 180ms ease,
@@ -519,13 +530,15 @@ h1 {
 
 .save {
   min-height: 48px;
+  min-width: 150px;
   padding: 0 20px;
   border: none;
   border-radius: 16px;
   background: linear-gradient(180deg, #34c759, #248a3d);
   color: white;
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 650;
+  line-height: 1;
 }
 
 .save[hidden] {
@@ -1413,19 +1426,118 @@ footer strong {
    Small mobile
 ========================================= */
 
+/* =========================================
+   Final iPhone layout refinement
+========================================= */
+
 @media (max-width: 500px) {
-  .header-top {
-    gap: 12px;
-  }
 
-  .buttons {
-    margin-left: 2px;
-    margin-right: 2px;
-  }
+    /* Today's Meeting header */
 
-  .sound-test {
-    padding: 0 13px;
-  }
+    .meeting-header {
+        width: 100%;
+        gap: 10px;
+        padding: 12px;
+    }
+
+    .meeting-title {
+        flex: 1 1 auto;
+        min-width: 0;
+        gap: 10px;
+    }
+
+    .meeting-title > div:last-child {
+        min-width: 0;
+    }
+
+    .meeting-title strong {
+        font-size: 15px;
+        white-space: nowrap;
+    }
+
+    .meeting-title span {
+        font-size: 11px;
+        white-space: nowrap;
+    }
+
+    .meeting-icon {
+        width: 40px;
+        height: 40px;
+        flex: 0 0 40px;
+    }
+
+    .new-meeting-button {
+        flex: 0 0 auto;
+        min-height: 38px;
+        padding: 0 10px;
+        font-size: 11px;
+    }
+
+
+    /* Speaker */
+
+    .speaker-input {
+        color: #6e6e73;
+        font-size: 16px;
+    }
+
+
+    /* Timer buttons */
+
+    .buttons {
+        width: 100%;
+        margin: 0 0 30px;
+        box-sizing: border-box;
+    }
+
+    .main-buttons {
+        width: 100%;
+        display: grid;
+        grid-template-columns:
+            minmax(0, 1fr)
+            minmax(0, 1.15fr)
+            minmax(0, 1fr);
+        gap: 8px;
+        box-sizing: border-box;
+    }
+
+    .start,
+    .save,
+    .reset {
+        width: 100%;
+        min-width: 0;
+        min-height: 48px;
+        padding: 0 5px;
+        border-radius: 16px;
+        box-sizing: border-box;
+        white-space: nowrap;
+    }
+
+    .start,
+    .reset {
+        font-size: 13px;
+    }
+
+    .save {
+        font-size: 12px;
+    }
+
+    .start svg,
+    .save svg,
+    .reset svg {
+        width: 15px;
+        height: 15px;
+        min-width: 15px;
+        flex: 0 0 15px;
+    }
+
+
+    /* Footer breathing room */
+
+    footer {
+        margin-top: 28px;
+        padding-bottom: 12px;
+    }
 }
 
 /* =========================================
@@ -1776,4 +1888,270 @@ body.dark-mode .theme-pill-label {
   .theme-pill-label {
     display: none;
   }
+}
+
+/* =========================================
+   Mobile timer buttons
+========================================= */
+
+@media (max-width: 500px) {
+
+  .buttons {
+    width: 100%;
+    margin: 0 0 30px;
+    padding: 0;
+  }
+
+  .main-buttons {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1.15fr 1fr;
+    gap: 8px;
+    margin: 0 auto;
+  }
+
+  .start,
+  .save,
+  .reset {
+    width: 100%;
+    min-width: 0;
+    min-height: 48px;
+    padding: 0 5px;
+    border-radius: 16px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+
+    white-space: nowrap;
+    line-height: 1;
+  }
+
+  .start,
+  .reset {
+    font-size: 13px;
+  }
+
+  .save {
+    font-size: 13px;
+  }
+
+  .start svg,
+  .save svg,
+  .reset svg {
+    width: 15px;
+    height: 15px;
+    min-width: 15px;
+    flex: 0 0 15px;
+  }
+}
+/* =========================================
+   FINAL TIMER BUTTON LAYOUT
+   Desktop + iPhone responsive
+========================================= */
+
+.buttons {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 0 34px;
+    box-sizing: border-box;
+}
+
+.main-buttons {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: fit-content;
+    max-width: 100%;
+    box-sizing: border-box;
+}
+
+/* All timer buttons */
+
+.start,
+.save,
+.reset {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    gap: 7px;
+
+    box-sizing: border-box;
+    min-height: 48px;
+
+    white-space: nowrap;
+    line-height: 1;
+
+    flex: 0 0 auto;
+}
+
+/* Keep normal button typography consistent */
+
+.start,
+.reset {
+    font-size: 16px;
+    font-weight: 650;
+}
+
+.save {
+    font-size: 16px;
+    font-weight: 650;
+}
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 500px) {
+
+    .buttons {
+        width: 100%;
+        padding: 0;
+        margin: 0 0 30px;
+    }
+
+    .main-buttons {
+        width: 100%;
+        max-width: 100%;
+        display: grid;
+
+        grid-template-columns:
+            minmax(0, 1fr)
+            minmax(0, 1fr)
+            minmax(0, 1fr);
+
+        gap: 8px;
+
+        margin: 0 auto;
+    }
+
+    .start,
+    .save,
+    .reset {
+        width: 100%;
+        min-width: 0;
+        min-height: 52px;
+
+        padding: 5px 4px;
+
+        border-radius: 16px;
+
+        /* IMPORTANT:
+           allow Finish & Save to wrap */
+        white-space: normal;
+
+        overflow: hidden;
+
+        text-align: center;
+        line-height: 1.15;
+
+        flex: none;
+    }
+
+    /* Keep icon and text together */
+
+    .start,
+    .reset {
+        font-size: 14px;
+    }
+
+    .save {
+        font-size: 14px;
+    }
+
+    .start .button-icon,
+    .save .button-icon,
+    .reset .button-icon {
+        flex: 0 0 16px;
+        width: 16px;
+        height: 16px;
+    }
+
+    /* Finish & Save can become two lines */
+
+    .save {
+        white-space: normal;
+    }
+
+}
+@media (max-width: 500px) {
+
+    /* When Finish & Save is hidden, centre Start + Reset */
+    .main-buttons:has(.save[hidden]) {
+        width: fit-content;
+        max-width: 100%;
+        grid-template-columns: auto auto;
+        justify-content: center;
+    }
+
+    .main-buttons:has(.save[hidden]) .start,
+    .main-buttons:has(.save[hidden]) .reset {
+        width: 130px;
+    }
+}
+.meeting-icon svg,
+.history-calendar-icon svg {
+    width: 24px !important;
+    height: 24px !important;
+    color: #ff3b30 !important;
+    fill: currentColor !important;
+}
+.history-footer-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    line-height: 1;
+}
+
+.history-footer-button .button-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 16px;
+    height: 16px;
+    flex: 0 0 16px;
+}
+
+.history-footer-button .button-icon svg {
+    display: block;
+    width: 16px !important;
+    height: 16px !important;
+}
+@media (max-width: 700px) {
+
+    .meeting-header {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 14px;
+    }
+
+    .meeting-title {
+        width: 100%;
+        min-width: 0;
+    }
+
+    .meeting-title > div:last-child {
+        min-width: 0;
+    }
+
+    .meeting-title strong {
+        display: block;
+        white-space: nowrap;
+    }
+
+    .meeting-title span {
+        display: block;
+        white-space: nowrap;
+    }
+
+    .new-meeting-button {
+        align-self: flex-end;
+        flex-shrink: 0;
+    }
 }
